@@ -4,6 +4,7 @@ Game::Game() {
   obstacles = CreateObstacles();
   aliens = CreateAliens();
   aliensDirection = 1;
+  timeLastAlienFired = 0;
 }
 
 Game::~Game() {
@@ -18,6 +19,12 @@ void Game::Update() {
   }
 
   MoveAliens();
+
+  AlienShootLaser();
+
+  for (auto& laser: alienLasers) {
+    laser.Update();
+  }
 
   DeleteInactiveLasers();
 
@@ -37,6 +44,10 @@ void Game::Draw() {
 
   for (auto& alien: aliens) {
     alien.Draw();
+  }
+
+  for (auto& laser: alienLasers) {
+    laser.Draw();
   }
 
 }
@@ -131,4 +142,19 @@ void Game::MoveDownAliens(int distance) {
     alien.position.y += distance;
   }
 
+}
+
+void Game::AlienShootLaser() {
+
+  double currentTime = GetTime();
+
+  if (currentTime - timeLastAlienFired >= alienLaserShootInterval && !aliens.empty()) {
+
+    int randomIndex = GetRandomValue(0, aliens.size() - 1);
+    Alien& alien = aliens[randomIndex];
+    alienLasers.push_back(Laser({alien.position.x + alien.alienImage[alien.type - 1].width/2, alien.position.y + alien.alienImage[alien.type - 1].height}, 6));
+
+    timeLastAlienFired = GetTime();
+
+  }
 }
