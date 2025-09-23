@@ -15,11 +15,22 @@ Game::~Game() {
 }
 
 void Game::Update() {
+
+  if (aliens.empty()) {
+    aliens = CreateAliens();
+  }
+
   double currentTime = GetTime();
   if (currentTime - timeLastSpawn > mysteryShipSpawnInterval) {
     mysteryship.Spawn();
     timeLastSpawn = GetTime();
     mysteryShipSpawnInterval = GetRandomValue(10, 20);
+  }
+
+  if (mysteryship.alive) {
+    spaceship.fireRate = 0;
+  } else {
+    spaceship.fireRate = 0.35;
   }
 
   for (auto& laser: spaceship.lasers) {
