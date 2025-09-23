@@ -22,3 +22,7 @@ void Laser::Update() {
     printf("Laser Inactive.\n");
   }
 }
+
+Rectangle Laser::GetRect() {
+  return {position.x, position.y, 4, 15};
+}

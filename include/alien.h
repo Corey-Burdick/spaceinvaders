@@ -15,6 +15,7 @@ public:
   void Update(int direction);
   void Draw();
   int GetType();
+  Rectangle GetRect();
 
 private:
 

@@ -50,3 +50,12 @@ void Alien::UnloadImages() {
     printf("Unloaded alien image %d\n", i);
   }
 }
+
+Rectangle Alien::GetRect() {
+  
+  return {position.x, position.y,
+  float(alienImage[type - 1].width),
+  float(alienImage[type - 1].height)
+  };
+
+}

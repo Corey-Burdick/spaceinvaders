@@ -11,6 +11,7 @@ public:
   void Update();
   void Draw();
   void Spawn();
+  Rectangle GetRect();
 
 private:
   Vector2 position;
