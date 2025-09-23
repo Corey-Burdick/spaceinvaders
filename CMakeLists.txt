@@ -10,6 +10,8 @@ set(MY_SOURCES
     src/game.cpp
     src/spaceship.cpp
     src/laser.cpp
+    src/block.cpp
+    src/obstacle.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${MY_SOURCES})
