@@ -13,6 +13,7 @@ set(MY_SOURCES
     src/block.cpp
     src/obstacle.cpp
     src/alien.cpp
+    src/mysteryship.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${MY_SOURCES})
