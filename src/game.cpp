@@ -37,6 +37,8 @@ void Game::Update() {
   DeleteInactiveLasers();
   mysteryship.Update();
 
+  CheckForCollisions();
+
 }
 
 void Game::Draw() {
@@ -175,5 +177,80 @@ void Game::AlienShootLaser() {
 
     timeLastAlienFired = GetTime();
 
+  }
+}
+
+void Game::CheckForCollisions() {
+
+  //Spaceship Lasers
+  
+  for (auto& laser: spaceship.lasers) {
+    auto it = aliens.begin();
+    while (it != aliens.end()) {
+      if (CheckCollisionRecs(it -> GetRect(), laser.GetRect())) {
+        it = aliens.erase(it);
+        laser.active = false;
+      } else {
+        it++;
+      }
+    }
+
+    for (auto& obstacle: obstacles) {
+      auto it = obstacle.blocks.begin();
+      while (it != obstacle.blocks.end()) {
+        if (CheckCollisionRecs(it -> GetRect(), laser.GetRect())) {
+          it = obstacle.blocks.erase(it);
+          laser.active = false;
+        } else {
+          it++;
+        }
+      }
+    }
+
+    if (CheckCollisionRecs(mysteryship.GetRect(), laser.GetRect())) {
+      mysteryship.alive = false;
+      laser.active = false;
+    }
+  }
+
+  //Alien Lasers
+
+  for (auto& laser: alienLasers) {
+    if (CheckCollisionRecs(laser.GetRect(), spaceship.GetRect())) {
+      laser.active = false;
+      printf("Spaceship Hit!\n");
+    }
+
+    for (auto& obstacle: obstacles) {
+      auto it = obstacle.blocks.begin();
+      while (it != obstacle.blocks.end()) {
+        if (CheckCollisionRecs(it -> GetRect(), laser.GetRect())) {
+          it = obstacle.blocks.erase(it);
+          laser.active = false;
+        } else {
+          it++;
+        }
+      }
+    }
+
+  }
+
+  //Alien Collision with Obstacle
+  
+  for (auto& alien: aliens) {
+    for (auto& obstacle: obstacles) {
+      auto it = obstacle.blocks.begin();
+      while (it != obstacle.blocks.end()) {
+        if (CheckCollisionRecs(it -> GetRect(), alien.GetRect())) {
+          it = obstacle.blocks.erase(it);
+        } else {
+          it++;
+        }
+      }
+    }
+
+    if (CheckCollisionRecs(alien.GetRect(), spaceship.GetRect())) {
+      printf("Spaceship Hit by Alien!\n");
+    }
   }
 }

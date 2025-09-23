@@ -16,6 +16,7 @@ public:
 private:
   Vector2 position;
   Texture2D image;
+  Texture2D memeText;
   int speed;
 
 };

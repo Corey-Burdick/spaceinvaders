@@ -1,16 +1,18 @@
 #include <mysteryship.h>
 
 MysteryShip::MysteryShip() {
-  image = LoadTexture("Graphics/mystery.png");
+  image = LoadTexture("Graphics/Moon.png");
+  memeText = LoadTexture("Graphics/descriptiveText.png");
   alive = false;
 }
 
 MysteryShip::~MysteryShip() {
   UnloadTexture(image);
+  UnloadTexture(memeText);
 }
 
 void MysteryShip::Spawn() {
-  position.y = 90;
+  position.y = 50;
   int side = GetRandomValue(0, 1);
 
   if (side == 0) {
@@ -36,6 +38,7 @@ void MysteryShip::Update() {
 void MysteryShip::Draw() {
   if (alive) {
     DrawTextureV(image, position, WHITE);
+    DrawTextureV(memeText,{position.x - memeText.width + GetRandomValue(-2, 2), position.y + GetRandomValue(-2, 2)}, WHITE);
   }
 
 }

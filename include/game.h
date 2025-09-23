@@ -35,5 +35,6 @@ private:
   void MoveAliens();
   void MoveDownAliens(int distance);
   void AlienShootLaser();
+  void CheckForCollisions();
 
 };
