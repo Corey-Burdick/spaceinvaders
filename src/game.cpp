@@ -4,8 +4,9 @@ Game::Game() {
   obstacles = CreateObstacles();
   aliens = CreateAliens();
   aliensDirection = 1;
-  mysteryship.Spawn();
   timeLastAlienFired = 0;
+  timeLastSpawn = 0;
+  mysteryShipSpawnInterval = GetRandomValue(10, 20);
 }
 
 Game::~Game() {
@@ -14,6 +15,12 @@ Game::~Game() {
 }
 
 void Game::Update() {
+  double currentTime = GetTime();
+  if (currentTime - timeLastSpawn > mysteryShipSpawnInterval) {
+    mysteryship.Spawn();
+    timeLastSpawn = GetTime();
+    mysteryShipSpawnInterval = GetRandomValue(10, 20);
+  }
 
   for (auto& laser: spaceship.lasers) {
     laser.Update();

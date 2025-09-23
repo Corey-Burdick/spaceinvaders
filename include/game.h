@@ -26,6 +26,8 @@ private:
   int aliensDirection;
   constexpr static float alienLaserShootInterval = 0.35;
   float timeLastAlienFired;
+  float mysteryShipSpawnInterval;
+  float timeLastSpawn;
 
   void DeleteInactiveLasers();
   std::vector<Obstacle> CreateObstacles();
