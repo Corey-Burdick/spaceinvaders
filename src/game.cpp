@@ -77,6 +77,14 @@ void Game::DeleteInactiveLasers() {
     }
   }
 
+  for (auto it = alienLasers.begin(); it != alienLasers.end();) {
+    if (!it -> active) {
+      it = alienLasers.erase(it);
+    } else {
+      ++it;
+    }
+  }
+
 }
 
 std::vector<Obstacle> Game::CreateObstacles() {
