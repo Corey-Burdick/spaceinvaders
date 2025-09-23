@@ -4,6 +4,7 @@
 #include <raylib.h>
 #include <spaceship.h>
 #include <obstacle.h>
+#include <alien.h>
 
 class Game{
 public:
@@ -18,8 +19,10 @@ public:
 private:
   Spaceship spaceship;
   std::vector<Obstacle> obstacles;
+  std::vector<Alien> aliens;
 
   void DeleteInactiveLasers();
   std::vector<Obstacle> CreateObstacles();
+  std::vector<Alien> CreateAliens();
 
 };
