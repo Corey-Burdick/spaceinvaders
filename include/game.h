@@ -5,6 +5,7 @@
 #include <spaceship.h>
 #include <obstacle.h>
 #include <alien.h>
+#include <mysteryship.h>
 
 class Game{
 public:
@@ -18,6 +19,7 @@ public:
 
 private:
   Spaceship spaceship;
+  MysteryShip mysteryship;
   std::vector<Obstacle> obstacles;
   std::vector<Alien> aliens;
   std::vector<Laser> alienLasers;
