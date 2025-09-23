@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 4.0)
-project(tetris C CXX)
+project(SpaceInvaders C CXX)
 
 include_directories(include)
 
@@ -7,6 +7,9 @@ link_directories(lib)
 
 set(MY_SOURCES
     src/main.cpp
+    src/game.cpp
+    src/spaceship.cpp
+    src/laser.cpp
 )
 
 add_executable(${CMAKE_PROJECT_NAME} ${MY_SOURCES})
