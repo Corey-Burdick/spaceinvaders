@@ -1,10 +1,6 @@
 cmake_minimum_required(VERSION 4.0)
 project(SpaceInvaders C CXX)
 
-include_directories(include)
-
-link_directories(lib)
-
 set(MY_SOURCES
     src/main.cpp
     src/game.cpp
@@ -18,4 +14,7 @@ set(MY_SOURCES
 
 add_executable(${CMAKE_PROJECT_NAME} ${MY_SOURCES})
 
-target_link_libraries(${CMAKE_PROJECT_NAME} raylib)
+add_subdirectory(external/raylib)
+
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC external/raylib/src include)
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC raylib)
