@@ -1,5 +1,15 @@
-cmake_minimum_required(VERSION 4.0)
+cmake_minimum_required(VERSION 3.0...4.0)
 project(SpaceInvaders C CXX)
+
+include(FetchContent)
+
+set(RAYLIB_VERSION 5.0)
+
+FetchContent_Declare(
+  raylib
+  URL https://github.com/raysan5/raylib/archive/refs/tags/${RAYLIB_VERSION}.tar.gz
+)
+FetchContent_MakeAvailable(raylib)
 
 set(MY_SOURCES
     src/main.cpp
@@ -14,7 +24,5 @@ set(MY_SOURCES
 
 add_executable(${CMAKE_PROJECT_NAME} ${MY_SOURCES})
 
-add_subdirectory(external/raylib)
-
-target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC external/raylib/src include)
-target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC raylib)
+target_include_directories(${CMAKE_PROJECT_NAME} PUBLIC include)
+target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE raylib)
