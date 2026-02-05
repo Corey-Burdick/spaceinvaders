@@ -83,7 +83,7 @@ void Game::Draw() {
   //DrawText(TextFormat("LIVES: %i", lives), 5, 5, 40, WHITE);
   
   for (int i = 0; i < lives; i++) {
-    DrawTexture(spaceship.image, 5 + spaceship.image.width * i, 5, WHITE);
+    DrawTexture(spaceship.image, 5 + spaceship.image.width * i + 5 * i, 5, WHITE);
   }
 
 }
