@@ -9,6 +9,7 @@ class Spaceship {
 public:
   std::vector<Laser> lasers;
   double fireRate;
+  Texture2D image;
   
   Spaceship();
   ~Spaceship();
@@ -20,7 +21,6 @@ public:
   Rectangle GetRect();
   
 private:
-  Texture2D image;
   Vector2 position;
   double lastFireTime;
 

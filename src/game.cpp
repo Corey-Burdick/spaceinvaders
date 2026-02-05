@@ -80,7 +80,11 @@ void Game::Draw() {
 
   mysteryship.Draw();
 
-  DrawText(TextFormat("LIVES: %i", lives), 5, 5, 40, WHITE);
+  //DrawText(TextFormat("LIVES: %i", lives), 5, 5, 40, WHITE);
+  
+  for (int i = 0; i < lives; i++) {
+    DrawTexture(spaceship.image, 5 + spaceship.image.width * i, 5, WHITE);
+  }
 
 }
 
