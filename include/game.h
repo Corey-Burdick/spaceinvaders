@@ -10,6 +10,7 @@
 class Game{
 public:
   int lives;
+  int wavesCleared;
 
   Game();
   ~Game();

@@ -2,6 +2,7 @@
 
 Game::Game() {
   lives = 3;
+  wavesCleared = 0;
   obstacles = CreateObstacles();
   aliens = CreateAliens();
   aliensDirection = 1;
@@ -19,11 +20,13 @@ void Game::Update() {
 
   if (aliens.empty()) {
     aliens = CreateAliens();
+    wavesCleared += 1;
   }
   if (lives <= 0) {
     aliens = CreateAliens();
     obstacles = CreateObstacles();
     lives = 3;
+    wavesCleared = 0;
   }
 
   double currentTime = GetTime();
@@ -85,6 +88,8 @@ void Game::Draw() {
   for (int i = 0; i < lives; i++) {
     DrawTexture(spaceship.image, 5 + spaceship.image.width * i + 5 * i, 5, WHITE);
   }
+
+  DrawText(TextFormat("Waves Cleared: %i", wavesCleared), 5, spaceship.image.height + 10, 25, WHITE);
 
 }
 
