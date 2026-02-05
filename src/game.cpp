@@ -3,6 +3,7 @@
 Game::Game() {
   lives = 3;
   wavesCleared = 0;
+  wavesSinceReset = 0;
   obstacles = CreateObstacles();
   aliens = CreateAliens();
   aliensDirection = 1;
@@ -21,12 +22,19 @@ void Game::Update() {
   if (aliens.empty()) {
     aliens = CreateAliens();
     wavesCleared += 1;
+    wavesSinceReset += 1;
+    if (wavesSinceReset >= 5) {
+      obstacles = CreateObstacles();
+      wavesSinceReset = 0;
+    }
   }
+
   if (lives <= 0) {
     aliens = CreateAliens();
     obstacles = CreateObstacles();
     lives = 3;
     wavesCleared = 0;
+    wavesSinceReset = 0;
   }
 
   double currentTime = GetTime();

@@ -11,6 +11,7 @@ class Game{
 public:
   int lives;
   int wavesCleared;
+  int wavesSinceReset;
 
   Game();
   ~Game();
