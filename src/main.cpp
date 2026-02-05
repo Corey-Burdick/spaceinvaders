@@ -9,12 +9,16 @@ int main() {
   int windowHeight = 700;
 
   InitWindow(windowWidth, windowHeight, "C++ Space Invader");
+  InitAudioDevice();
   SetTargetFPS(60);
 
   Game game = Game();
+  Music mainTheme = LoadMusicStream("Music/PlaceholderTrack1.ogg");
+  mainTheme.looping = true;
+  PlayMusicStream(mainTheme);
 
   while (!WindowShouldClose()) {
-    
+    UpdateMusicStream(mainTheme);
     game.HandleInput();
     game.Update();
 
@@ -25,6 +29,8 @@ int main() {
 
     EndDrawing();
   }
+
+  UnloadMusicStream(mainTheme);
 
   printf("Window Closed.\n");
 }
