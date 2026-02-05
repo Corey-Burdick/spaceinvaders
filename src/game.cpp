@@ -26,6 +26,7 @@ void Game::Update() {
     if (wavesSinceReset >= 5) {
       obstacles = CreateObstacles();
       wavesSinceReset = 0;
+      lives += 1;
     }
   }
 
@@ -35,6 +36,9 @@ void Game::Update() {
     lives = 3;
     wavesCleared = 0;
     wavesSinceReset = 0;
+  }
+  if (lives > 15) {
+    lives = 15;
   }
 
   double currentTime = GetTime();
@@ -111,6 +115,9 @@ void Game::HandleInput() {
   } 
   if (IsKeyDown(KEY_SPACE)) {
     spaceship.FireLaser();
+  }
+  if (IsKeyDown(KEY_R)) {
+    lives += 1;
   }
 
 }
