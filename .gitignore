@@ -1,3 +1,4 @@
 /build/*
 !/build/Graphics/
 !/build/Sounds/
+!/build/Music/
