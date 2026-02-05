@@ -9,6 +9,7 @@
 
 class Game{
 public:
+  int lives;
 
   Game();
   ~Game();

@@ -1,6 +1,7 @@
 #include <game.h>
 
 Game::Game() {
+  lives = 3;
   obstacles = CreateObstacles();
   aliens = CreateAliens();
   aliensDirection = 1;
@@ -18,6 +19,11 @@ void Game::Update() {
 
   if (aliens.empty()) {
     aliens = CreateAliens();
+  }
+  if (lives <= 0) {
+    aliens = CreateAliens();
+    obstacles = CreateObstacles();
+    lives = 3;
   }
 
   double currentTime = GetTime();
@@ -73,6 +79,8 @@ void Game::Draw() {
   }
 
   mysteryship.Draw();
+
+  DrawText(TextFormat("LIVES: %i", lives), 5, 5, 40, WHITE);
 
 }
 
@@ -229,6 +237,7 @@ void Game::CheckForCollisions() {
   for (auto& laser: alienLasers) {
     if (CheckCollisionRecs(laser.GetRect(), spaceship.GetRect())) {
       laser.active = false;
+      lives -= 1;
       printf("Spaceship Hit!\n");
     }
 
