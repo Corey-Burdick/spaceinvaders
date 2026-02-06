@@ -21,6 +21,7 @@ public:
 
 
 private:
+  Music mainTheme;
   Spaceship spaceship;
   MysteryShip mysteryship;
   std::vector<Obstacle> obstacles;

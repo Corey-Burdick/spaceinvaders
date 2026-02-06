@@ -1,6 +1,11 @@
 #include <game.h>
 
 Game::Game() {
+  InitAudioDevice();
+  mainTheme = LoadMusicStream("Music/PlaceholderTrack1.ogg");
+  mainTheme.looping = true;
+  SetMusicVolume(mainTheme, 0.6f);
+  PlayMusicStream(mainTheme);
   lives = 3;
   wavesCleared = 0;
   wavesSinceReset = 0;
@@ -14,10 +19,13 @@ Game::Game() {
 
 Game::~Game() {
   printf("Unloaded Game.\n");
+  UnloadMusicStream(mainTheme);
   Alien::UnloadImages();
 }
 
 void Game::Update() {
+
+  UpdateMusicStream(mainTheme);
 
   if (aliens.empty()) {
     aliens = CreateAliens();
