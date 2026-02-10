@@ -15,6 +15,7 @@ Game::Game() {
   timeLastAlienFired = 0;
   timeLastSpawn = 0;
   mysteryShipSpawnInterval = GetRandomValue(10, 20);
+  timeSinceLastKeyPress = 0;
 }
 
 Game::~Game() {
@@ -79,6 +80,8 @@ void Game::Update() {
 
   CheckForCollisions();
 
+  timeSinceLastKeyPress += GetFrameTime();
+
 }
 
 void Game::Draw() {
@@ -124,8 +127,9 @@ void Game::HandleInput() {
   if (IsKeyDown(KEY_SPACE)) {
     spaceship.FireLaser();
   }
-  if (IsKeyDown(KEY_R)) {
+  if (IsKeyDown(KEY_R) && timeSinceLastKeyPress >= 0.5) {
     lives += 1;
+    timeSinceLastKeyPress = 0;
   }
 
 }

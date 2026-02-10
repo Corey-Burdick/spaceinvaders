@@ -32,6 +32,7 @@ private:
   float timeLastAlienFired;
   float mysteryShipSpawnInterval;
   float timeLastSpawn;
+  float timeSinceLastKeyPress;
 
   void DeleteInactiveLasers();
   std::vector<Obstacle> CreateObstacles();
