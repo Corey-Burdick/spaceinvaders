@@ -24,6 +24,7 @@ private:
   Music mainTheme;
   Spaceship spaceship;
   MysteryShip mysteryship;
+  bool cheatButtonDown;
   std::vector<Obstacle> obstacles;
   std::vector<Alien> aliens;
   std::vector<Laser> alienLasers;

@@ -16,6 +16,7 @@ Game::Game() {
   timeLastSpawn = 0;
   mysteryShipSpawnInterval = GetRandomValue(10, 20);
   timeSinceLastKeyPress = 0;
+  cheatButtonDown = false;
 }
 
 Game::~Game() {
@@ -127,9 +128,13 @@ void Game::HandleInput() {
   if (IsKeyDown(KEY_SPACE)) {
     spaceship.FireLaser();
   }
-  if (IsKeyDown(KEY_R) && timeSinceLastKeyPress >= 0.5) {
+  if (IsKeyDown(KEY_R) == false) {
+    cheatButtonDown = false;
+  }
+  if (IsKeyDown(KEY_R) && timeSinceLastKeyPress >= 0.5 && !cheatButtonDown) {
     lives += 1;
     timeSinceLastKeyPress = 0;
+    cheatButtonDown = true;
   }
 
 }
