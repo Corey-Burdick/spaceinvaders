@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.0...4.0)
+cmake_minimum_required(VERSION 4.0)
 project(SpaceInvaders C CXX)
 
 include(FetchContent)
 
-set(RAYLIB_VERSION 5.0)
+set(RAYLIB_VERSION 5.5)
 
 FetchContent_Declare(
   raylib
